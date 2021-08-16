@@ -3,6 +3,7 @@ const loginHistoryService = require('../services/loginHistory.service');
 async function addLogin(req, res, next) {
     let userName = req.body.userName;
     let date = req.body.date;
+    console.log(req.body);
     try {
         res.send(await loginHistoryService.addLogin(userName, date));
     } catch (err) {
