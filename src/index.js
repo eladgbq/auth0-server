@@ -24,13 +24,17 @@ var jwtCheck = jwt({
 
 app.use(cors());
 
-app.use(express.urlencoded({ extended: false }));
+app.use(jwtCheck);
+
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
-app.use(jwtCheck);
-
 app.use('/loginHistory', loginHistory)
+
+app.get('/authorized', function (req, res) {
+    res.send('Secured Resource');
+});
 
 app.listen(PORT, () => {
     console.log("listening on port " + PORT);
